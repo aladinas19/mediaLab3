@@ -109,11 +109,12 @@ function initialize()
 	markerRoot1 = new THREE.Group();
 	scene.add(markerRoot1);
 	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-		type: 'pattern', patternUrl: "data/hiro.patt",
+		type: 'pattern', patternUrl: "data/my-marker.patt",
 	})
 
 	let geometry1	= new THREE.CubeGeometry(1,1,1);
 	let material1	= new THREE.MeshNormalMaterial({
+		color: 0xff0000,
 		transparent: true,
 		opacity: 0.5,
 		side: THREE.DoubleSide
@@ -142,11 +143,19 @@ function render()
 
 function animate()
 {
-	requestAnimationFrame(animate);
-	deltaTime = clock.getDelta();
-	totalTime += deltaTime;
-	update();
-	render();
+{
+  requestAnimationFrame(animate);
+  deltaTime = clock.getDelta();
+  totalTime += deltaTime;
+
+  if (mesh1) {
+    mesh1.rotation.y += 0.02;
+    mesh1.rotation.x += 0.01;
+  }
+
+  update();
+  render();
+}
 }
 
 </script>
